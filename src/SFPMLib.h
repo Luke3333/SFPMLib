@@ -110,6 +110,11 @@ namespace sfpmlib
 		static FixedPoint<T> Round(FixedPoint<T> const&);
 		static FixedPoint<T> Int(FixedPoint<T> const&);
 		static FixedPoint<T> Fract(FixedPoint<T> const&);
+		static FixedPoint<T> Min(FixedPoint<T> a, FixedPoint<T> b) { return (a < b) ? a : b; }
+		static FixedPoint<T> Max(FixedPoint<T> a, FixedPoint<T> b) { return (a > b) ? a : b; }
+		static inline FixedPoint<T> FPMin();
+		static inline FixedPoint<T> FPMax();
+		static inline FixedPoint<T> FPEpsilon() { return T(false, 0, 1); }
 	};
 
 	template <typename T>
@@ -1091,6 +1096,46 @@ namespace sfpmlib
 	FixedPoint<T>::Fract(FixedPoint<T> const& value)
 	{
 		return FixedPoint<T>(false, 0, value.number.value.fractional);
+	}
+
+	template <typename T>
+	FixedPoint<T>
+	FixedPoint<T>::FPMin()
+	{
+		if (sizeof(T) == 1)
+		{
+			return T(true, 255u, 255u);
+		}
+		else if (sizeof(T) == 2)
+		{
+			return T(true, 65535u, 65535u);
+		}
+		else if (sizeof(T) == 4)
+		{
+			return T(true, 4294967295ul, 4294967295ul);
+		}
+
+		throw FPException("Invalid Size");
+	}
+
+	template <typename T>
+	FixedPoint<T>
+	FixedPoint<T>::FPMax()
+	{
+		if (sizeof(T) == 1)
+		{
+			return T(false, 255u, 255u);
+		}
+		else if (sizeof(T) == 2)
+		{
+			return T(false, 65535u, 65535u);
+		}
+		else if (sizeof(T) == 4)
+		{
+			return T(false, 4294967295ul, 4294967295ul);
+		}
+
+		throw FPException("Invalid Size");
 	}
 
 	// Helpers

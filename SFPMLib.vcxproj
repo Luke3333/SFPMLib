@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FixedPointMath.h" />
+    <ClCompile Include="FixedPointMath.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FixedPointMath.cpp" />
+    <ClInclude Include="src\SFPMLib.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

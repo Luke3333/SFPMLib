@@ -1,4 +1,4 @@
-#include "FixedPointMath.h"
+#include "..\SFPMLib\src\SFPMLib.h"
 
 using namespace sfpmlib;
 
