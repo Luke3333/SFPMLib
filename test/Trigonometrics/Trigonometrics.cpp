@@ -10,11 +10,11 @@ template <class T>
 void CosineFP(T startAngle, T endAngle, T increment)
 {
 	std::string s("CosineFP");
-	if (sizeof(T) == 1)
+	if (sizeof(T::IntegerPart) == 1)
 	{
 		s += "Short";
 	}
-	else if (sizeof(T) == 2)
+	else if (sizeof(T::IntegerPart) == 2)
 	{
 		s += "Medium";
 	}
@@ -40,11 +40,11 @@ template <class T>
 void SineFP(T startAngle, T endAngle, T increment)
 {
 	std::string s("SineFP");
-	if (sizeof(T) == 1)
+	if (sizeof(T::IntegerPart) == 1)
 	{
 		s += "Short";
 	}
-	else if (sizeof(T) == 2)
+	else if (sizeof(T::IntegerPart) == 2)
 	{
 		s += "Medium";
 	}
@@ -75,11 +75,11 @@ void TanFP(T startAngle, T endAngle, T increment)
 	static T pi2(T::FromString("6.283185307"));
 
 	std::string s("TanFP");
-	if (sizeof(T) == 1)
+	if (sizeof(T::IntegerPart) == 1)
 	{
 		s += "Short";
 	}
-	else if (sizeof(T) == 2)
+	else if (sizeof(T::IntegerPart) == 2)
 	{
 		s += "Medium";
 	}
@@ -128,7 +128,7 @@ int main()
 	// 8.8 fixed point numbers
 	FixedPointSmall startAngleSmall = FixedPointSmall::FromString("0.0");
 	FixedPointSmall endAngleSmall = FixedPointSmall::FromString("6.283185307");
-	FixedPointSmall incrementSmall = FixedPointSmall::FromString("0.001");
+	FixedPointSmall incrementSmall = FixedPointSmall::FromString("0.005");
 
 	std::cout << "Test Cosine with 8.8 fixed point numbers" << std::endl;
 	CosineFP(startAngleSmall, endAngleSmall, incrementSmall);
