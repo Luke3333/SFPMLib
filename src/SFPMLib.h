@@ -942,8 +942,11 @@ namespace sfpmlib
 		if (!number.value.integer && number.value.fractional)
 		{
 			// The argument is less than 1 so the result will be negative
-			// Invert the result
-			res.number.sign = true;
+			if (res.number.value.fixedPoint)
+			{
+				// Invert the result
+				res.number.sign = true;
+			}
 		}
 
 		return res;

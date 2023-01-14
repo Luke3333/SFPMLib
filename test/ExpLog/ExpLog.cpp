@@ -10,11 +10,11 @@ template <class T>
 void LogFP(T start, T end, T increment)
 {
 	std::string s("LogFP");
-	if (sizeof(T) == 1)
+	if (sizeof(T::IntegerPart) == 1)
 	{
 		s += "Small";
 	}
-	else if (sizeof(T) == 2)
+	else if (sizeof(T::IntegerPart) == 2)
 	{
 		s += "Medium";
 	}
@@ -41,11 +41,11 @@ template <class T>
 void ExpFP(T start, T end, T increment)
 {
 	std::string s("ExpFP");
-	if (sizeof(T) == 1)
+	if (sizeof(T::IntegerPart) == 1)
 	{
 		s += "Small";
 	}
-	else if (sizeof(T) == 2)
+	else if (sizeof(T::IntegerPart) == 2)
 	{
 		s += "Medium";
 	}
@@ -71,7 +71,22 @@ void ExpFP(T start, T end, T increment)
 template <class T>
 void ParabolicFP(T start, T end, T increment)
 {
-	FILE* f = fopen("C:\\Temp\\ParabolicFPMedium.txt", "w");
+	std::string s("ParabolicFP");
+	if (sizeof(T::IntegerPart) == 1)
+	{
+		s += "Small";
+	}
+	else if (sizeof(T::IntegerPart) == 2)
+	{
+		s += "Medium";
+	}
+	else
+	{
+		s += "Large";
+	}
+	s += ".txt";
+
+	FILE* f = fopen(s.c_str(), "w");
 	if (f)
 	{
 		for(T arg = start; arg < end; arg += increment)
@@ -87,8 +102,8 @@ void ParabolicFP(T start, T end, T increment)
 int main()
 {
 	// 8.8 fixed point numbers
-	FixedPointSmall startSmall = FixedPointSmall::FromString("0.0001");
-	FixedPointSmall endSmall = FixedPointSmall::FromString("10000.0");
+	FixedPointSmall startSmall = FixedPointSmall::FromString("0.005");
+	FixedPointSmall endSmall = FixedPointSmall::FromString("200.0");
 	FixedPointSmall incrementSmall = FixedPointSmall::FromString("0.1");
 
 	std::cout << "Test Log with 8.8 fixed point numbers" << std::endl;
@@ -102,8 +117,8 @@ int main()
 	ExpFP(startSmall, endSmall, incrementSmall);
 	std::cout << "Done" << std::endl;
 
-	startSmall = FixedPointSmall::FromString("-100.0");
-	endSmall = FixedPointSmall::FromString("100.0");
+	startSmall = FixedPointSmall::FromString("-15.5");
+	endSmall = FixedPointSmall::FromString("15.5");
 	incrementSmall = FixedPointSmall::FromString("0.01");
 	std::cout << "Test x^2 with 8.8 fixed point numbers" << std::endl;
 	ParabolicFP(startSmall, endSmall, incrementSmall);
