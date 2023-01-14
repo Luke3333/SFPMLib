@@ -567,7 +567,7 @@ namespace sfpmlib
 		{
 			ss << "-";
 		}
-		ss << number.value.integer;
+		ss << (uint32_t)number.value.integer;
 		ss << ".";
 
 		fractional = number.value.fractional;
